@@ -1,13 +1,20 @@
+using System;
 using AutoFixture.Kernel;
 
-namespace AutoFixture;
-
-public class SingleBehaviourCustomization(ISpecimenBuilderTransformation transformation) : ICustomization
+namespace AutoFixture
 {
-    private readonly ISpecimenBuilderTransformation transformation = transformation ?? throw new ArgumentNullException(nameof(transformation));
-
-    public void Customize(IFixture fixture)
+    public class SingleBehaviourCustomization : ICustomization
     {
-        fixture.Behaviors.Add(transformation);
+        private readonly ISpecimenBuilderTransformation transformation;
+
+        public void Customize(IFixture fixture)
+        {
+            fixture.Behaviors.Add(transformation);
+        }
+
+        public SingleBehaviourCustomization(ISpecimenBuilderTransformation transformation)
+        {
+            this.transformation = transformation ?? throw new ArgumentNullException(nameof(transformation));
+        }
     }
 }
