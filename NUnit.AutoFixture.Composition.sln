@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit.AutoFixture.Composition", "NUnit.AutoFixture.Composition\NUnit.AutoFixture.Composition.csproj", "{42A4FBC6-741C-43B3-878C-97E23BDA81F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit.AutoFixture.Composition.Tests", "NUnit.AutoFixture.Composition.Tests\NUnit.AutoFixture.Composition.Tests.csproj", "{40A2E715-709B-46BE-A232-DE90F7BC5207}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42A4FBC6-741C-43B3-878C-97E23BDA81F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A4FBC6-741C-43B3-878C-97E23BDA81F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A4FBC6-741C-43B3-878C-97E23BDA81F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A4FBC6-741C-43B3-878C-97E23BDA81F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40A2E715-709B-46BE-A232-DE90F7BC5207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40A2E715-709B-46BE-A232-DE90F7BC5207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40A2E715-709B-46BE-A232-DE90F7BC5207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40A2E715-709B-46BE-A232-DE90F7BC5207}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
