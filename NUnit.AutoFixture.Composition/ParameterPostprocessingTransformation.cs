@@ -4,10 +4,33 @@ using AutoFixture.Kernel;
 
 namespace AutoFixture
 {
+    /// <summary>
+    /// An AutoFixture behaviour (a <see cref="ISpecimenBuilderTransformation"/>) which applies a post-processing
+    /// action to a specimen which was created to satisfy a specified parameter.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// This class is the heart of the NUnit/AutoFixture composition micro-library.
+    /// It 'connects' an instance of <see cref="PostprocessingCommand{T}"/> with a an instance of
+    /// <see cref="ParameterSpecification"/> in order to create and return an instance of
+    /// <see cref="Postprocessor"/>. That returned post-processor will do whatever the current
+    /// <see cref="ISpecimenBuilder"/> does, but additionally apply the builder customization
+    /// (post-processing) action to the specimen identified by the parameter.
+    /// </para>
+    /// </remarks>
+    /// <typeparam name="T"></typeparam>
     public class ParameterPostprocessingTransformation<T> : ISpecimenBuilderTransformation where T : class
     {
         private readonly Action<T, ISpecimenContext> builderCustomizer;
         private readonly ParameterInfo parameter;
+
+        /// <inheritdoc/>
+        public ISpecimenBuilderNode Transform(ISpecimenBuilder builder)
+        {
+            var command = new PostprocessingCommand<T>(builderCustomizer);
+            var spec = new ParameterSpecification(parameter.ParameterType, parameter.Name);
+            return new Postprocessor(builder, command, spec);
+        }
 
         public ParameterPostprocessingTransformation(Action<T, ISpecimenContext> builderCustomizer, ParameterInfo parameter)
         {
@@ -20,13 +43,6 @@ namespace AutoFixture
                                             $"Parameter type : {parameter.ParameterType}\n" +
                                             $"Generic type   : {typeof(T)}",
                                             nameof(parameter));
-        }
-
-        public ISpecimenBuilderNode Transform(ISpecimenBuilder builder)
-        {
-            var command = new PostprocessingCommand<T>(builderCustomizer);
-            var spec = new ParameterSpecification(parameter.ParameterType, parameter.Name);
-            return new Postprocessor(builder, command, spec);
         }
     }
 }
