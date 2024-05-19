@@ -32,6 +32,13 @@ namespace AutoFixture
             return new Postprocessor(builder, command, spec);
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="ParameterPostprocessingTransformation{T}"/>.
+        /// </summary>
+        /// <param name="builderCustomizer">The customization action which will post-process the specimen.</param>
+        /// <param name="parameter">The parameter indicating the specimen which should be post-processed.</param>
+        /// <exception cref="ArgumentNullException">If either parameter is <see langword="null" />.</exception>
+        /// <exception cref="ArgumentException">If the <see cref="ParameterInfo.ParameterType"/> is not compatible with the generic type <typeparamref name="T"/>.</exception>
         public ParameterPostprocessingTransformation(Action<T, ISpecimenContext> builderCustomizer, ParameterInfo parameter)
         {
             this.builderCustomizer = builderCustomizer ?? throw new ArgumentNullException(nameof(builderCustomizer));

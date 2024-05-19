@@ -23,6 +23,11 @@ namespace AutoFixture
             fixture.Behaviors.Add(transformation);
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="SingleBehaviourCustomization"/>.
+        /// </summary>
+        /// <param name="transformation">The specimen builder transformation "behaviour" which will be applied by this customization.</param>
+        /// <exception cref="ArgumentNullException">If <paramref name="transformation"/> is <see langword="null" />.</exception>
         public SingleBehaviourCustomization(ISpecimenBuilderTransformation transformation)
         {
             this.transformation = transformation ?? throw new ArgumentNullException(nameof(transformation));

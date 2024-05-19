@@ -11,15 +11,15 @@ It originated with [this StackOverflow question/answer].
 If you are using [NUnit 3], [AutoFixture] and [the integration between these frameworks] then it is likely that you are also writing your own [`CustomiseAttribute`] implementations to configure _how the AutoFixture specimen is created_.
 
 What's slightly more difficult with just the libraries above is writing customize attributes _which may be composed_.
-Customizations written using the following style of syntax _cannot be easily composed via separate classes_ this customization hook controls the initial creation of the specimen.
-Only one such customisation can logically be used - you may only _create_ any given object once.
+Customizations written using the following syntax cannot be easily split into separate classes and then composed.
 
 ```csharp
 fixture.Customize<MyType>(c => c.With(x => x.SomeProperty, "Some value"));
 ```
 
-That lack of composition makes it difficult to write customize attributes which may be combined/composed, such that multiple attributes are all effective upon a single parameter.
-This micro-framework provides a quick mechanism to solve this issue by providing a shorthand syntax for writing [AutoFixture behaviours]
+The technique shown above controls the initial creation of the specimen.
+Obviously, only one such customisation can be used: _an object may only be created once_.
+This micro-framework provides a shorthand syntax for writing [AutoFixture behaviours], which can post-process an object after creation, and are thus suitable for composition.
 
 [NUnit 3]: https://nunit.org/
 [AutoFixture]: https://autofixture.github.io/
@@ -43,9 +43,13 @@ In this example, we customize an instance of `SampleObject` to have its `MyPrope
 The example above is also configured to only apply this behaviour when the specimen is requested via a matching parameter, useful where the specimen is to be parameter-injection into a test.
 As with any other attributes, this could be parameterized by accepting constructor parameters and/or property setters in the attribute definition.
 
+## Technical info
+
 The core of the library is the `GetParameterTranformer` static class.
 It gets an `ICustomization` instance for post-processing a specimen.
+
 For advanced uses, use the methods which gets only an `ISpecimenBuilderTransformation`, which may then be manipulated as desired.
 
-Each method also contains overloads which provide access to an `ISpecimenContext` in the customization callback, providing access back to AutoFixture's infrastructure.
+Another advanced technique is to use the overloads of `ForType<T>` which provide access to an `ISpecimenContext` in the customization callback.
+That specimen context provides access back to Autofixture's functionality.
 This could be useful to re-invoke AutoFixture functionality in order to create further specimens where needed.

@@ -28,6 +28,11 @@ namespace AutoFixture
             builderCustomizer(builder, context);
         }
 
+        /// <summary>
+        /// Creates a new instance of <see cref="PostprocessingCommand{T}"/>.
+        /// </summary>
+        /// <param name="builderCustomizer">The customization action which will post-process the specimen.</param>
+        /// <exception cref="ArgumentNullException">If <paramref name="builderCustomizer"/> is <see langword="null" />.</exception>
         public PostprocessingCommand(Action<T, ISpecimenContext> builderCustomizer)
         {
             this.builderCustomizer = builderCustomizer ?? throw new ArgumentNullException(nameof(builderCustomizer));
