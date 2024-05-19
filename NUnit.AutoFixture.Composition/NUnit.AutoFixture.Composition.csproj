@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.5;net452</TargetFrameworks>
+    <TargetFrameworks>netstandard1.5;netstandard2.0;net452</TargetFrameworks>
     <RootNamespace>Autofixture</RootNamespace>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\NUnit.AutoFixture.Composition.xml</DocumentationFile>
     <PackageId>NUnit.AutoFixture.Composition</PackageId>
