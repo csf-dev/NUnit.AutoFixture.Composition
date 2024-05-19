@@ -8,7 +8,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Title>NUnit.AutoFixture.Composition</Title>
     <Description>A micro-framework for writing Autofixture/NUnit3 customize attributes which perform composable post-processing upon created specimens.</Description>
-    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <ReleaseVersion>1.0.1</ReleaseVersion>
     <Authors>craigfowler</Authors>
     <VersionPrefix>$(ReleaseVersion)</VersionPrefix>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
